@@ -3,7 +3,6 @@ import { runDesign, type DesignJob } from "@/lib/nupack/design";
 import { toModelSpec, type DesignRequest } from "@/lib/nupack/job-types";
 import { createJob, getJob } from "@/lib/server/jobs";
 
-export const maxDuration = 600;
 
 export async function POST(request: Request) {
   let body: DesignRequest;

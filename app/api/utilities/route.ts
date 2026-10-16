@@ -20,7 +20,6 @@ import {
   type UtilitiesResponse,
 } from "@/lib/nupack/job-types";
 
-export const maxDuration = 120;
 
 const MAX_NUCLEOTIDES = 1200;
 

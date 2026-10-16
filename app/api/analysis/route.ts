@@ -16,7 +16,6 @@ import {
 } from "@/lib/nupack/job-types";
 import { createJob, getJob } from "@/lib/server/jobs";
 
-export const maxDuration = 300;
 
 const MAX_STRANDS = 12;
 const MAX_NUCLEOTIDES = 400;
