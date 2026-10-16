@@ -1,29 +1,31 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Suspense } from "react";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import { Masthead, Navigation, SiteFooter } from "@/components/Chrome";
 
 export const metadata: Metadata = {
   title: "Newerpack",
-  description: "A growing project archive.",
+  description:
+    "Analysis and design of nucleic acid structures, devices and systems: partition functions, MFE structures, equilibrium base-pairing probabilities, test tube concentrations, melts and sequence design.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
-    >
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en">
+      <body>
+        <div className="shell">
+          <Masthead />
+          <Suspense fallback={<div style={{ height: 46 }} />}>
+            <Navigation />
+          </Suspense>
+          {children}
+          <SiteFooter />
+        </div>
+      </body>
     </html>
   );
 }

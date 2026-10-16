@@ -6,7 +6,12 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "check:pf": "tsx scripts/validate-pf.ts",
+    "check:mfe": "tsx scripts/check-mfe.ts",
+    "check:ensemble": "tsx scripts/check-ensemble.ts",
+    "check:design": "tsx scripts/check-design.ts",
+    "params": "node lib/nupack/params/build-params.mjs"
   },
   "dependencies": {
     "next": "16.4.2",
@@ -21,6 +26,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.4.2",
     "tailwindcss": "^4",
+    "tsx": "^4.23.15",
     "typescript": "^5"
   }
 }

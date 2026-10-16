@@ -1,36 +1,121 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Newerpack
 
-## Getting Started
+Analysis and design of nucleic acid structures, devices and systems — a web
+application plus a self-contained TypeScript thermodynamics engine.
 
-First, run the development server:
+It implements the standard unpseudoknotted secondary structure model end to end:
+partition functions over complexes of interacting strands, minimum free energy
+structures, equilibrium base-pairing probabilities, equilibrium concentrations in
+a test tube, melt profiles, ensemble sizes and defects, and sequence design
+against a multi-tube ensemble objective.
+
+## Running it
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open <http://localhost:3000>. No account or service is needed — every
+calculation runs in the application.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Pages
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Page                             | What it does                                                                                                                  |
+| -------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `/utilities`                     | One complex: draw a structure, evaluate its free energy, probability and ensemble defect, show the pair probability matrix, find the MFE structure, or design a sequence for a structure. |
+| `/analysis/input`                | A test tube of interacting strands: complex free energies, equilibrium concentrations, MFE structures, pair probabilities, melt profiles. |
+| `/design/input`                  | Sequence design over a multi-tube ensemble with domains, target structures, target concentrations and IUPAC constraints.       |
+| `/model`, `/definitions`, `/references`, `/faq` | What the engine models, the vocabulary, the literature it follows, and the known limitations.                  |
 
-## Learn More
+Each section ships with demos that load a complete job.
 
-To learn more about Next.js, take a look at the following resources:
+## Engine
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The engine has no runtime dependencies and can be used on its own:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```ts
+import { encodeSequence } from "@/lib/nupack/alphabet";
+import { Model, makeNickedSequence } from "@/lib/nupack/model";
+import { partitionFunction } from "@/lib/nupack/pf";
+import { mfe } from "@/lib/nupack/mfe";
 
-## Deploy on Vercel
+const model = new Model({ material: "dna", celsius: 23 });
+const seq = makeNickedSequence([
+  encodeSequence("CCACACCACAACAACCACATCTCG"),
+  encodeSequence("CGAGATGTGGTTGTTGTGGTGTGGATACAACCACACCACAACAACCAC"),
+]);
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+const pf = partitionFunction(seq, model, { pairs: true });
+const best = mfe(seq, model);
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+| Module                             | Contents                                                          |
+| ---------------------------------- | ----------------------------------------------------------------- |
+| `lib/nupack/model.ts`              | Energy model, nicked-sequence representation, temperature scaling  |
+| `lib/nupack/pf.ts`                 | Partition function (inside) and pair probabilities (outside)       |
+| `lib/nupack/mfe.ts`                | MFE structure and traceback                                        |
+| `lib/nupack/energy.ts`             | Free energy of one specified structure, by loop decomposition      |
+| `lib/nupack/complex.ts`            | Complexes, circular orderings, symmetry correction                 |
+| `lib/nupack/concentrations.ts`     | Equilibrium concentration solver                                   |
+| `lib/nupack/analysis.ts`           | Test tube analysis, melt profiles, tube pair fractions             |
+| `lib/nupack/design.ts`             | Multi-tube ensemble defect optimisation                            |
+| `lib/nupack/ensemble.ts`           | Ensemble size                                                      |
+| `lib/nupack/structure.ts`          | dot-parens-plus, RLE dot-parens-plus and DU+ notations             |
+| `lib/nupack/layout.ts`             | Secondary structure layout for drawing                             |
+
+### Connectivity
+
+A complex is one concatenated sequence with a nick wherever one strand ends and
+the next begins. A loop whose unpaired regions span a nick is part of the
+exterior loop and is scored as such. The polymer graph of an unpseudoknotted
+structure is connected exactly when the exterior loop contains no nick and every
+other loop contains at most one — two nicks in one loop cut its boundary cycle
+into two arcs that no unpseudoknotted base pair can join. The recursions enforce
+that directly, so the partition function covers connected structures only.
+
+### Parameters
+
+Nearest-neighbour parameters are built from the published Turner/Mathews 2004
+(RNA) and SantaLucia/Mathews 2004 (DNA) sets:
+
+```bash
+node lib/nupack/params/build-params.mjs
+```
+
+That converts a ViennaRNA-format `.par` file in `lib/nupack/params/raw/` into the
+JSON the engine loads. Point it at a different file to swap parameter sets.
+
+## Checks
+
+```bash
+npm run check:pf        # partition function and pair probabilities vs exhaustive enumeration
+npm run check:mfe       # MFE vs exhaustive enumeration, and published reference energies
+npm run check:ensemble  # ensemble sizes vs published counts
+npm run check:design    # design reaches its stop condition on known targets
+```
+
+`check:pf` and `check:mfe` enumerate every connected unpseudoknotted structure of
+short single strands, duplexes and three-strand complexes and compare against the
+dynamic program; free energies and pair probabilities agree to floating-point
+precision. `check:ensemble` reproduces the published count of 2349 structures for
+`ATAGTTTTCTCGAAAACGAT`.
+
+## Known limitations
+
+- **Coaxial stacking is not modelled.** Ensemble options that mention coaxial
+  stacking fall back to terminal-mismatch and dangle treatment. Single strands
+  agree closely with the reference implementation — structure free energies
+  typically within a few tenths of a kcal/mol — while complexes with nicks
+  adjacent to helices come out less stable by roughly 1–2 kcal/mol per nicked
+  junction.
+- **Mixed-material jobs are not supported.** RNA/DNA and RNA/2′OMe-RNA hybrids
+  need hybrid nearest-neighbour tables that are not part of the published
+  single-material sets; 2′OMe-RNA is evaluated with the RNA set.
+
+Both are limitations of the parameterisation, not of the algorithms: the
+recursions, the connectivity handling, the outside algorithm and the
+concentration solver are exact for the model as stated.
+
+Newerpack is an independent open implementation. It is not affiliated with
+NUPACK or Caltech.
