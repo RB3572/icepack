@@ -51,13 +51,11 @@ function prepare(body: DesignRequest): DesignJob {
       if (constraint === "") {
         throw new Error(`Domain "${domain.name}" needs a length or a sequence constraint`);
       }
-      if (/^\d+$/.test(constraint)) {
-        return { name: domain.name.trim(), constraint: "N".repeat(Number(constraint)) };
-      }
-      if (!/^[ACGTUNRYSWKMBDHV]+$/.test(constraint)) {
+      const expanded = expandConstraint(constraint);
+      if (!/^[ACGTUNRYSWKMBDHV]+$/.test(expanded)) {
         throw new Error(`Domain "${domain.name}" has characters outside the IUPAC codes`);
       }
-      return { name: domain.name.trim(), constraint };
+      return { name: domain.name.trim(), constraint: expanded };
     });
   if (domains.length === 0) throw new Error("Add at least one domain");
 
@@ -102,4 +100,15 @@ function prepare(body: DesignRequest): DesignJob {
     seed: body.seed || 0,
     trials: Math.max(1, Math.min(10, body.trials)),
   };
+}
+
+/**
+ * Accepts the same shorthand the Design page offers: a bare length ("12"), or
+ * run-length codes such as "N10" or "N6S2", as well as a plain IUPAC string.
+ */
+function expandConstraint(text: string): string {
+  if (/^\d+$/.test(text)) return "N".repeat(Number(text));
+  return text.replace(/([ACGTUNRYSWKMBDHV])(\d+)/g, (_, letter: string, count: string) =>
+    letter.repeat(Number(count)),
+  );
 }
