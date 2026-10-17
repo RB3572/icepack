@@ -64,6 +64,20 @@ export function Navigation() {
   const section = PRIMARY.find((entry) => pathname.startsWith(entry.match));
   const sub = section ? SUBNAV[section.match] : undefined;
 
+  // Behind the password gate every link is a dead end, so show the bare bar.
+  if (pathname === "/unlock") {
+    return (
+      <>
+        <nav className="navbar" aria-hidden="true">
+          <span className="spacer" style={{ padding: "7px 0" }}>&nbsp;</span>
+        </nav>
+        <nav className="subnav" aria-hidden="true">
+          <span style={{ padding: "3px 0" }}>&nbsp;</span>
+        </nav>
+      </>
+    );
+  }
+
   return (
     <>
       <nav className="navbar">
@@ -101,15 +115,19 @@ export function Navigation() {
 }
 
 export function SiteFooter() {
+  const pathname = usePathname() ?? "/";
+  const locked = pathname === "/unlock";
   return (
     <footer className="sitefoot">
-      <nav>
-        {FOOTER.map((entry) => (
-          <Link key={entry.href} href={entry.href}>
-            {entry.label}
-          </Link>
-        ))}
-      </nav>
+      {!locked && (
+        <nav>
+          {FOOTER.map((entry) => (
+            <Link key={entry.href} href={entry.href}>
+              {entry.label}
+            </Link>
+          ))}
+        </nav>
+      )}
       <div>
         Newerpack is an independent open implementation. It is not affiliated with
         NUPACK or Caltech.

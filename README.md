@@ -19,6 +19,27 @@ npm run dev
 Then open <http://localhost:3000>. No account or service is needed — every
 calculation runs in the application.
 
+## Password gate
+
+The whole site sits behind a shared password. `proxy.ts` checks every request:
+pages redirect to `/unlock`, and API routes answer `401` with JSON so a fetch
+gets a usable error rather than a login page where it expected data. The
+destination you were heading for is remembered in a short-lived cookie and
+restored after unlocking.
+
+The access cookie holds `sha256("newerpack:v1:" + password)` rather than a
+"logged in" flag, so it cannot be forged by someone who does not know the
+password. Bump `VERSION` in `lib/server/access.ts` to invalidate every existing
+session.
+
+The password is read from `SITE_PASSWORD`, falling back to a value in
+`lib/server/access.ts` so a fresh checkout works with no configuration.
+
+> **This repository is public.** The fallback password is therefore readable by
+> anyone who finds the repo. Set `SITE_PASSWORD` in the hosting environment
+> (Vercel: Project Settings -> Environment Variables, then redeploy) to use a
+> password that is not in the source.
+
 ## Pages
 
 | Page                             | What it does                                                                                                                  |

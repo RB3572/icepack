@@ -23,7 +23,9 @@ export default function RootLayout({
             <Navigation />
           </Suspense>
           {children}
-          <SiteFooter />
+          <Suspense fallback={<div style={{ height: 56 }} />}>
+            <SiteFooter />
+          </Suspense>
         </div>
       </body>
     </html>
