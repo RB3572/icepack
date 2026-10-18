@@ -6,7 +6,7 @@ export default function HomePage() {
       <div style={{ display: "grid", gridTemplateColumns: "minmax(0,1.1fr) minmax(0,1fr)", gap: 36 }}>
         <div>
           <p style={{ marginTop: 0 }}>
-            <strong style={{ color: "var(--orange-dark)" }}>Newerpack</strong> is a
+            <strong style={{ color: "var(--brand-dark)" }}>Icepack</strong> is a
             software suite for the analysis and design of nucleic acid structures,
             devices and systems, for molecular programming, nucleic acid
             nanotechnology, synthetic biology and the life sciences more broadly.
@@ -52,7 +52,7 @@ export default function HomePage() {
         <aside>
           <div
             style={{
-              background: "#b57fc4",
+              background: "var(--brand)",
               color: "#fff",
               textAlign: "center",
               padding: "8px 0",
@@ -61,8 +61,8 @@ export default function HomePage() {
           >
             Notes
           </div>
-          <div style={{ border: "1px solid #e4d6ea", padding: "12px 14px", background: "#faf6fc" }}>
-            <p style={{ textAlign: "center", color: "#8a4fa0", margin: "0 0 10px" }}>
+          <div style={{ border: "1px solid var(--brand-tint)", padding: "12px 14px", background: "#f2f9fd" }}>
+            <p style={{ textAlign: "center", color: "var(--brand-dark)", margin: "0 0 10px" }}>
               What this build computes
             </p>
             <ul style={{ margin: "0 0 0 16px", padding: 0 }}>

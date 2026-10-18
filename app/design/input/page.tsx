@@ -1,6 +1,6 @@
 import { DesignInput } from "./DesignInput";
 
-export const metadata = { title: "Design | Newerpack" };
+export const metadata = { title: "Design | Icepack" };
 
 export default function DesignInputPage() {
   return (

@@ -1,18 +1,20 @@
 @import "tailwindcss";
 
 :root {
-  --orange: #f29f2e;
-  --orange-dark: #e07c12;
-  --orange-light: #fbcf96;
-  --green: #a8d05a;
-  --green-light: #c6e38e;
-  --ink: #2f2f2f;
-  --muted: #6d6d6d;
-  --link: #3a7fc1;
-  --rule: #d8d8d8;
+  /* Deep blue carries the chrome; ice blue is the secondary. */
+  --brand: #2176ae;
+  --brand-dark: #155b8a;
+  --brand-tint: #cae4f5;
+  --ice: #8fd0ee;
+  --ice-tint: #bfe5f7;
+  --on-brand-tint: #0d3d5c;
+  --ink: #23303a;
+  --muted: #65757f;
+  --link: #1d6ea8;
+  --rule: #d5e0e8;
   --panel: #ffffff;
   --page: #ffffff;
-  --shade: #f7f7f5;
+  --shade: #f3f8fc;
   --danger: #c7452f;
 }
 
@@ -66,12 +68,12 @@ a:hover {
   font-size: 40px;
   font-weight: 700;
   letter-spacing: -0.5px;
-  color: var(--orange);
+  color: var(--brand);
   line-height: 1;
 }
 .wordmark-name em {
   font-style: normal;
-  color: #5b8f3f;
+  color: #5fb6e0;
 }
 .wordmark-tag {
   font-size: 12px;
@@ -85,14 +87,14 @@ a:hover {
   padding-top: 4px;
 }
 .newsbar strong {
-  color: var(--danger);
+  color: var(--brand-dark);
 }
 .newsbar p {
   margin: 0 0 4px;
 }
 
 .navbar {
-  background: var(--orange);
+  background: var(--brand);
   display: flex;
   align-items: stretch;
   gap: 0;
@@ -105,42 +107,42 @@ a:hover {
   text-decoration: none;
 }
 .navbar a:hover {
-  background: var(--orange-dark);
+  background: var(--brand-dark);
   text-decoration: none;
 }
 .navbar a[data-active="true"] {
-  background: var(--orange-light);
-  color: #4a3100;
+  background: var(--brand-tint);
+  color: var(--on-brand-tint);
 }
 .navbar .spacer {
   flex: 1;
 }
 
 .subnav {
-  background: var(--green);
+  background: var(--ice);
   display: flex;
   justify-content: flex-end;
   gap: 0;
   padding: 0 8px;
 }
 .subnav a {
-  color: #31460f;
+  color: var(--on-brand-tint);
   font-size: 11px;
   padding: 3px 18px;
   text-decoration: none;
 }
 .subnav a[data-active="true"] {
-  background: var(--green-light);
+  background: var(--ice-tint);
 }
 
 .panel {
-  border: 1px solid var(--green);
+  border: 1px solid var(--ice);
   border-top: none;
   padding: 18px 22px 26px;
   background: var(--panel);
 }
 .panel.analysis {
-  border-color: var(--green);
+  border-color: var(--ice);
 }
 
 .sitefoot {
@@ -175,7 +177,7 @@ a:hover {
   width: 13px;
   height: 13px;
   border-radius: 50%;
-  background: var(--orange);
+  background: var(--brand);
   color: #fff;
   font-size: 9px;
   font-weight: 700;
@@ -199,7 +201,7 @@ input[type="text"]:focus,
 input[type="number"]:focus,
 select:focus,
 textarea:focus {
-  outline: 2px solid var(--orange-light);
+  outline: 2px solid var(--brand-tint);
   outline-offset: -1px;
 }
 textarea {
@@ -218,7 +220,7 @@ textarea {
 }
 
 .btn {
-  background: var(--orange);
+  background: var(--brand);
   border: none;
   border-radius: 3px;
   color: #fff;
@@ -228,7 +230,7 @@ textarea {
   padding: 6px 26px;
 }
 .btn:hover:not(:disabled) {
-  background: var(--orange-dark);
+  background: var(--brand-dark);
 }
 .btn:disabled {
   opacity: 0.55;
@@ -317,7 +319,7 @@ table.grid input[type="text"] {
 }
 
 .section-title {
-  color: var(--orange-dark);
+  color: var(--brand-dark);
   font-size: 14px;
   font-weight: 700;
   margin: 18px 0 6px;
@@ -385,7 +387,7 @@ table.grid input[type="text"] {
 
 .pill {
   display: inline-block;
-  background: var(--orange);
+  background: var(--brand);
   color: #fff;
   border-radius: 3px;
   font-size: 12px;
@@ -395,15 +397,15 @@ table.grid input[type="text"] {
   font-family: inherit;
 }
 .pill:hover {
-  background: var(--orange-dark);
+  background: var(--brand-dark);
 }
 
 .spin {
   display: inline-block;
   width: 12px;
   height: 12px;
-  border: 2px solid var(--orange-light);
-  border-top-color: var(--orange-dark);
+  border: 2px solid var(--brand-tint);
+  border-top-color: var(--brand-dark);
   border-radius: 50%;
   animation: spin 0.8s linear infinite;
   vertical-align: -2px;

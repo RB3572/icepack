@@ -1,13 +1,13 @@
 import Link from "next/link";
 
-export const metadata = { title: "Download | Newerpack" };
+export const metadata = { title: "Download | Icepack" };
 
 export default function DownloadPage() {
   return (
     <main className="panel prose">
       <h1>Download</h1>
       <p>
-        Newerpack is a web application plus a self-contained TypeScript engine. The
+        Icepack is a web application plus a self-contained TypeScript engine. The
         engine has no runtime dependencies and can be used on its own:
       </p>
       <pre

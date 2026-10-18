@@ -1,4 +1,4 @@
-export const metadata = { title: "Definitions | Newerpack" };
+export const metadata = { title: "Definitions | Icepack" };
 
 const ENTRIES: Array<[string, React.ReactNode]> = [
   [

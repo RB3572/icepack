@@ -39,7 +39,7 @@ export function Masthead() {
     <header className="masthead">
       <Link className="wordmark" href="/">
         <span className="wordmark-name">
-          newer<em>pack</em>
+          ice<em>pack</em>
         </span>
         <span className="wordmark-tag">nucleic acid design</span>
       </Link>
@@ -129,7 +129,7 @@ export function SiteFooter() {
         </nav>
       )}
       <div>
-        Newerpack is an independent open implementation. It is not affiliated with
+        Icepack is an independent open implementation. It is not affiliated with
         NUPACK or Caltech.
       </div>
     </footer>

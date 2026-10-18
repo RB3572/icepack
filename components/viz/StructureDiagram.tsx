@@ -101,7 +101,7 @@ export function StructureDiagram({
     if (shading === "probability" && probabilities) {
       return probabilityColor(probabilities[i] ?? 0);
     }
-    return "#f29f2e";
+    return "#2176ae";
   };
 
   return (

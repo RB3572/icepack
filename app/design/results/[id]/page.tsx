@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { DesignResults } from "./DesignResults";
 
-export const metadata = { title: "Design results | Newerpack" };
+export const metadata = { title: "Design results | Icepack" };
 
 export default function DesignResultsPage({
   params,

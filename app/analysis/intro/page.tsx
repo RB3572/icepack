@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export const metadata = { title: "Analysis intro | Newerpack" };
+export const metadata = { title: "Analysis intro | Icepack" };
 
 export default function AnalysisIntroPage() {
   return (

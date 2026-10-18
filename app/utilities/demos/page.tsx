@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export const metadata = { title: "Utilities demos | Newerpack" };
+export const metadata = { title: "Utilities demos | Icepack" };
 
 interface UtilityDemo {
   id: string;

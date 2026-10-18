@@ -1,4 +1,4 @@
-export const metadata = { title: "References | Newerpack" };
+export const metadata = { title: "References | Icepack" };
 
 const GROUPS: Array<{ title: string; items: Array<{ text: string; href?: string }> }> = [
   {

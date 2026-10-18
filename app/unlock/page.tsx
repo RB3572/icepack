@@ -1,6 +1,6 @@
 import { UnlockForm } from "./UnlockForm";
 
-export const metadata = { title: "Newerpack" };
+export const metadata = { title: "Icepack" };
 
 export default function UnlockPage() {
   return (

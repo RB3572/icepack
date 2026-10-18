@@ -18,7 +18,8 @@ export interface LinePlotProps {
   onPick?: (x: number) => void;
 }
 
-const PALETTE = ["#f29f2e", "#3a7fc1", "#5b8f3f", "#c7452f", "#8a5bbf", "#2f9b9b"];
+// Brand blues lead; the rest keep multi-series melts distinguishable.
+const PALETTE = ["#2176ae", "#5fb6e0", "#c7452f", "#5b8f3f", "#8a5bbf", "#d08a1e"];
 
 export function LinePlot({
   series,
@@ -99,7 +100,7 @@ export function LinePlot({
                 cx={px(point.x)}
                 cy={py(point.y)}
                 r={marker !== null && Math.abs(point.x - marker) < 1e-6 ? 5 : 3}
-                fill={marker !== null && Math.abs(point.x - marker) < 1e-6 ? "#3a7fc1" : color}
+                fill={marker !== null && Math.abs(point.x - marker) < 1e-6 ? "#0d3d5c" : color}
               >
                 <title>{`${point.x} , ${point.y.toFixed(4)}`}</title>
               </circle>
@@ -208,7 +209,7 @@ export function BarChart({
               y={2}
               width={barWidth}
               height={rowHeight - 5}
-              fill={row.highlight ? "#3a7fc1" : "#d9392a"}
+              fill={row.highlight ? "#15577f" : "#8fd0ee"}
             />
             <text x={left + barWidth + 5} y={rowHeight * 0.72} fontSize={9} fill="#6d6d6d">
               {format(row.value)}

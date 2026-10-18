@@ -155,7 +155,7 @@ export function PairMatrix({
       )}
 
       {/* strand boundaries */}
-      <g stroke="#f29f2e" strokeWidth={0.9}>
+      <g stroke="#0d3d5c" strokeWidth={0.9}>
         {boundaries.map((value) => (
           <g key={`s${value}`}>
             <line x1={x(value)} y1={marginTop} x2={x(value)} y2={marginTop + plot} />

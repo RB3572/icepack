@@ -4,7 +4,7 @@ import "./globals.css";
 import { Masthead, Navigation, SiteFooter } from "@/components/Chrome";
 
 export const metadata: Metadata = {
-  title: "Newerpack",
+  title: "Icepack",
   description:
     "Analysis and design of nucleic acid structures, devices and systems: partition functions, MFE structures, equilibrium base-pairing probabilities, test tube concentrations, melts and sequence design.",
 };

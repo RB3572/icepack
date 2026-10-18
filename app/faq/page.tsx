@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export const metadata = { title: "FAQ | Newerpack" };
+export const metadata = { title: "FAQ | Icepack" };
 
 const QA: Array<[string, React.ReactNode]> = [
   [

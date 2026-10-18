@@ -25,11 +25,11 @@ type AnyJob = Job<unknown, unknown>;
 const MAX_JOBS = 60;
 
 declare global {
-  var __newerpackJobs: Map<string, AnyJob> | undefined;
+  var __icepackJobs: Map<string, AnyJob> | undefined;
 }
 
-const store: Map<string, AnyJob> = globalThis.__newerpackJobs ?? new Map();
-globalThis.__newerpackJobs = store;
+const store: Map<string, AnyJob> = globalThis.__icepackJobs ?? new Map();
+globalThis.__icepackJobs = store;
 
 function prune() {
   if (store.size <= MAX_JOBS) return;

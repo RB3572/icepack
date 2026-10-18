@@ -1,6 +1,6 @@
 import { AnalysisInput } from "./AnalysisInput";
 
-export const metadata = { title: "Analysis | Newerpack" };
+export const metadata = { title: "Analysis | Icepack" };
 
 export default function AnalysisInputPage() {
   return (

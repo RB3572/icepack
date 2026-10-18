@@ -1,4 +1,4 @@
-export const metadata = { title: "Model | Newerpack" };
+export const metadata = { title: "Model | Icepack" };
 
 export default function ModelPage() {
   return (

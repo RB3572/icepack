@@ -1,4 +1,4 @@
-# Newerpack
+# Icepack
 
 Analysis and design of nucleic acid structures, devices and systems — a web
 application plus a self-contained TypeScript thermodynamics engine.
@@ -27,13 +27,15 @@ gets a usable error rather than a login page where it expected data. The
 destination you were heading for is remembered in a short-lived cookie and
 restored after unlocking.
 
-The access cookie holds `sha256("newerpack:v1:" + password)` rather than a
+The access cookie holds `sha256("icepack:v1:" + password)` rather than a
 "logged in" flag, so it cannot be forged by someone who does not know the
 password. Bump `VERSION` in `lib/server/access.ts` to invalidate every existing
 session.
 
 The password is read from `SITE_PASSWORD`, falling back to a value in
-`lib/server/access.ts` so a fresh checkout works with no configuration.
+`lib/server/access.ts` so a fresh checkout works with no configuration. The
+fallback is unchanged by the rename to Icepack - it is a credential, not a
+brand string.
 
 > **This repository is public.** The fallback password is therefore readable by
 > anyone who finds the repo. Set `SITE_PASSWORD` in the hosting environment
@@ -138,5 +140,5 @@ Both are limitations of the parameterisation, not of the algorithms: the
 recursions, the connectivity handling, the outside algorithm and the
 concentration solver are exact for the model as stated.
 
-Newerpack is an independent open implementation. It is not affiliated with
+Icepack is an independent open implementation. It is not affiliated with
 NUPACK or Caltech.

@@ -7,10 +7,10 @@
  * middleware that enforces the gate runs on the edge runtime.
  */
 
-export const ACCESS_COOKIE = "newerpack_access";
+export const ACCESS_COOKIE = "icepack_access";
 
 /** Where the visitor was heading when the gate stopped them. */
-export const RETURN_COOKIE = "newerpack_from";
+export const RETURN_COOKIE = "icepack_from";
 
 /**
  * Override in the hosting environment to keep the password out of the repo.
@@ -33,7 +33,7 @@ async function sha256Hex(value: string): Promise<string> {
 
 /** The cookie value a correctly authenticated visitor carries. */
 export function accessToken(): Promise<string> {
-  cached ??= sha256Hex(`newerpack:${VERSION}:${PASSWORD}`);
+  cached ??= sha256Hex(`icepack:${VERSION}:${PASSWORD}`);
   return cached;
 }
 

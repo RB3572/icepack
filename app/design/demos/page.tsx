@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { DESIGN_DEMOS } from "./demos";
 
-export const metadata = { title: "Design demos | Newerpack" };
+export const metadata = { title: "Design demos | Icepack" };
 
 export default function DesignDemosPage() {
   return (
