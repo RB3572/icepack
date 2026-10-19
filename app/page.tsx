@@ -1,9 +1,10 @@
 import Link from "next/link";
+import { IcebergFigure } from "@/components/IceScene";
 
 export default function HomePage() {
   return (
     <main className="panel">
-      <div style={{ display: "grid", gridTemplateColumns: "minmax(0,1.1fr) minmax(0,1fr)", gap: 36 }}>
+      <div className="home-grid">
         <div>
           <p style={{ marginTop: 0 }}>
             <strong style={{ color: "var(--brand-dark)" }}>Icepack</strong> is a
@@ -75,7 +76,11 @@ export default function HomePage() {
               <li>Sequence design against a multi-tube ensemble defect</li>
             </ul>
           </div>
+          <IcebergFigure />
           <p style={{ marginTop: 14 }}>
+            Every calculation on this site runs in this application, using the
+            published Turner 2004 (RNA) and SantaLucia / Mathews 2004 (DNA)
+            nearest-neighbour parameter sets.{" "}
             <Link href="/model">Model and parameters</Link> describes the energy
             model, where the parameters come from, and the specific places where
             this implementation differs from the reference implementation it

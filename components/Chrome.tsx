@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { FooterWaves, MastheadScene } from "@/components/IceScene";
 
 const PRIMARY = [
   { href: "/analysis/input", label: "Analysis", match: "/analysis" },
@@ -37,23 +38,17 @@ const FOOTER = [
 export function Masthead() {
   return (
     <header className="masthead">
-      <Link className="wordmark" href="/">
-        <span className="wordmark-name">
-          ice<em>pack</em>
-        </span>
-        <span className="wordmark-tag">nucleic acid design</span>
-      </Link>
-      <div className="newsbar">
-        <p>
-          <strong>Open engine:</strong> every calculation on this site runs in this
-          application - partition function, MFE, pair probabilities, equilibrium
-          concentrations, melts and sequence design.
-        </p>
-        <p>
-          Thermodynamics from the published Turner 2004 (RNA) and SantaLucia /
-          Mathews 2004 (DNA) nearest-neighbour parameter sets.{" "}
-          <Link href="/model">Model details</Link>
-        </p>
+      <MastheadScene />
+      <div className="masthead-inner">
+        <Link className="wordmark" href="/">
+          <span className="logo-mark" aria-hidden="true" />
+          <span className="wordmark-text">
+            <span className="wordmark-name">
+              ice<em>pack</em>
+            </span>
+            <span className="wordmark-tag">nucleic acid design</span>
+          </span>
+        </Link>
       </div>
     </header>
   );
@@ -119,18 +114,21 @@ export function SiteFooter() {
   const locked = pathname === "/unlock";
   return (
     <footer className="sitefoot">
-      {!locked && (
-        <nav>
-          {FOOTER.map((entry) => (
-            <Link key={entry.href} href={entry.href}>
-              {entry.label}
-            </Link>
-          ))}
-        </nav>
-      )}
-      <div>
-        Icepack is an independent open implementation. It is not affiliated with
-        NUPACK or Caltech.
+      <FooterWaves />
+      <div className="sitefoot-body">
+        {!locked && (
+          <nav>
+            {FOOTER.map((entry) => (
+              <Link key={entry.href} href={entry.href}>
+                {entry.label}
+              </Link>
+            ))}
+          </nav>
+        )}
+        <div>
+          Icepack is an independent open implementation. It is not affiliated with
+          NUPACK or Caltech.
+        </div>
       </div>
     </footer>
   );

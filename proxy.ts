@@ -40,5 +40,5 @@ export async function proxy(request: NextRequest) {
 export const config = {
   // Everything except Next's own static output and the favicon, so the unlock
   // screen can still load its stylesheet.
-  matcher: ["/((?!_next/static|_next/image|favicon.ico).*)"],
+  matcher: ["/((?!_next/static|_next/image|favicon.ico|icon.svg|apple-icon.png).*)"],
 };

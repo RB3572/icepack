@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+<defs>
+<linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2d8fcf"/><stop offset="1" stop-color="#0b3556"/></linearGradient>
+<linearGradient id="sub" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e6f6fd" stop-opacity=".5"/><stop offset="1" stop-color="#bfe5f7" stop-opacity=".12"/></linearGradient>
+<clipPath id="tile"><rect width="64" height="64" rx="14"/></clipPath>
+</defs>
+<g clip-path="url(#tile)">
+<rect width="64" height="64" fill="url(#sea)"/>
+<path d="M0 0H64V37H0Z" fill="#9fd8f1" opacity=".38"/>
+<path d="M7 36.5H57L50 52 35 63H25L13 52Z" fill="url(#sub)"/>
+<path d="M7 36.5 21 21 30 6 36 20 45 14 57 36.5Z" fill="#c9e8f7"/>
+<path d="M7 36.5 21 21 30 6 35 36.5Z" fill="#ffffff"/>
+<path d="M36 20 45 14 57 36.5H44Z" fill="#8fd0ee"/>
+<path d="M30 6 35 36.5" stroke="#8fd0ee" stroke-width="1" opacity=".7" fill="none"/>
+<path d="M4 36.5Q10 34 16 36.5T28 36.5T40 36.5T52 36.5T64 36.5" stroke="#e8f7ff" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+<g fill="none" stroke-linecap="round" stroke-linejoin="round">
+<path d="M45.5,44.25 L18.5,44.25 M18.5,53.75 L45.5,53.75" stroke="#d8f0fb" stroke-width="1.3" opacity=".9"/>
+<g><path d="M32,39.5 L28.69,40.25 L25.57,41 L22.86,41.75 L20.7,42.5 L19.23,43.25 L18.55,44 L18.68,44.75 L19.64,45.5 L21.35,46.25 L23.71,47 L26.58,47.75 L29.78,48.5" stroke="#5fb6e0" stroke-width="2.6"/><path d="M32,49 L28.69,49.75 L25.57,50.5 L22.86,51.25 L20.7,52 L19.23,52.75 L18.55,53.5 L18.68,54.25 L19.64,55 L21.35,55.75 L23.71,56.5 L26.58,57.25 L29.78,58" stroke="#5fb6e0" stroke-width="2.6"/><path d="M32,58.5 L28.69,59.25 L25.57,60 L22.86,60.75 L20.7,61.5" stroke="#5fb6e0" stroke-width="2.6"/></g>
+<g><path d="M32,39.5 L35.31,40.25 L38.43,41 L41.14,41.75 L43.3,42.5 L44.77,43.25 L45.45,44 L45.32,44.75 L44.36,45.5 L42.65,46.25 L40.29,47 L37.42,47.75 L34.22,48.5" stroke="#ffffff" stroke-width="2.8"/><path d="M32,49 L35.31,49.75 L38.43,50.5 L41.14,51.25 L43.3,52 L44.77,52.75 L45.45,53.5 L45.32,54.25 L44.36,55 L42.65,55.75 L40.29,56.5 L37.42,57.25 L34.22,58" stroke="#ffffff" stroke-width="2.8"/><path d="M32,58.5 L35.31,59.25 L38.43,60 L41.14,60.75 L43.3,61.5" stroke="#ffffff" stroke-width="2.8"/></g>
+</g>
+</g>
+</svg>
